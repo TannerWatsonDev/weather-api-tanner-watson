@@ -30,7 +30,7 @@ describe('GET /weather', () => {
     expect(res.status).toBe(400);
     });
 
-    it('returns 200 with weather data on success', async () => {
+    it('returns 200 with weather data on success when name is Today', async () => {
         getWeatherForLocation.mockResolvedValue({
         name: 'Today',
         temperature: 72,
@@ -42,6 +42,21 @@ describe('GET /weather', () => {
         const res = await request(app).get('/weather?lat=37.3&lon=-93.2');
         expect(res.status).toBe(200);
         expect(res.body.temperature).toBe(72);
+        expect(res.body.tempCharacterization).toBe('moderate');
+    });
+
+    it('returns 200 with weather data on success when name is Tonight', async () => {
+        getWeatherForLocation.mockResolvedValue({
+        name: 'Tonight',
+        temperature: 68,
+        temperatureUnit: 'F',
+        shortForecast: 'Partly Cloudy',
+        tempCharacterization: 'moderate',
+        });
+
+        const res = await request(app).get('/weather?lat=37.3&lon=-93.2');
+        expect(res.status).toBe(200);
+        expect(res.body.temperature).toBe(68);
         expect(res.body.tempCharacterization).toBe('moderate');
     });
 

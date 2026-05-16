@@ -49,7 +49,7 @@ const getWeatherForLocation = async (latitude, longitude) => {
     const forecastData = await getForecast(forecastUrl);
     // find the period in the forecast data that corresponds to "Today"
     const todayPeriod = forecastData.properties.periods.find(
-      (period) => period.name === "Today",
+      (period) => period.name === "Today" || period.name === "Tonight",
     );
 
     // if today's weather information is not found, throw an error
