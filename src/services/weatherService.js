@@ -60,6 +60,7 @@ const getWeatherForLocation = async (latitude, longitude) => {
     // return object containing todays weather information
     return {
       name: todayPeriod.name,
+      date: todayPeriod.startTime,
       temperature: todayPeriod.temperature,
       temperatureUnit: todayPeriod.temperatureUnit,
       shortForecast: todayPeriod.shortForecast,
