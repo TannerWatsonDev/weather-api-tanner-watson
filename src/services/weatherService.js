@@ -1,3 +1,6 @@
+// import temp characterization
+const tempCharacterization = require('../utils/tempCharacterization');
+
 // user agent string for NWS API requests
 const USER_AGENT = "(weather-api-tanner-watson, tanner.watsondev@gmail.com)";
 
@@ -60,6 +63,7 @@ const getWeatherForLocation = async (latitude, longitude) => {
       temperature: todayPeriod.temperature,
       temperatureUnit: todayPeriod.temperatureUnit,
       shortForecast: todayPeriod.shortForecast,
+      tempCharacterization: tempCharacterization(todayPeriod.temperature),
     };
   } catch (error) {
     // log any errors that occur during the fetch process
